@@ -1,6 +1,9 @@
 # macOS files
 **/.DS_Store
 
+# .swp
+**/*.swp
+
 # files in venv
 venv
 
