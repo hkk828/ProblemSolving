@@ -31,7 +31,7 @@ if removed_id and removed_id[-1] == '.':
 6단계: 문자열이 16자 이상이면 첫 15자만 남기고, 끝에 오는 . 을 제거해줍니다.
 ```python
 removed_id = ['a'] if not removed_id else removed_id[:15]
-if removed_id[-1] == '.':
+while removed_id[-1] == '.':
 	removed_id.pop()
 ```
 
