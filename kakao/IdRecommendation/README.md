@@ -1,10 +1,11 @@
-### 아이디 추천
+## 아이디 추천
 [문제 링크]
 https://programmers.co.kr/learn/courses/30/lessons/72410  
 
 문자열이 주어졌을 때, 규칙에 맞는 새로운 문자열을 반환하는 문제입니다.  
 특별한 아이디어가 필요하지 않고, 문제에 적힌 순서를 그대로 따라가면 어렵지 않게 해결할 수 있습니다.  
 
+### 풀이
 1단계: 먼저 ```new_id```를 소문자로 치환해 줍니다.
 ```python
 new_id = new_id.lower()
@@ -46,4 +47,35 @@ if len(removed_id) <= 2:
 ```python
 new_id = ''.join(removed_id)
 return new_id
+```  
+
+### 정규 표현식(Regular expression)을 활용한 풀이
+문제가 문자열을 다루고 있고, 원하는 형식이 정해져 있는 경우 정규 표현식을 활용하여 문제를 해결할 수도 있습니다.  
+```python```에서는 ```re```라는 라이브러리를 이용하여 정규 표현식을 처리 할 수 있습니다.  
+이 경우 코드를 간결하게 할 수 있으나 처리 속도는 느려질 수 있습니다.  
+
+```python
+import re
+
+def solution(new_id):
+    # 1단계: 소문자로 변환
+    new_id = new_id.lower()
+
+    # 2단계: 알파벳 소문자, 숫자, -, _, . 만 허용
+    new_id = re.sub('[^a-z0-9-_.]', '', new_id)
+
+    # 3단계: 연속된 . 는 하나의 . 로 치환
+    new_id = re.sub('\.+', '.', new_id)
+
+    # 4단계: 처음이나 끝에 있는 . 제거
+    new_id = new_id.strip('.')
+
+    # 5, 6단계: 빈 문자열이면 'a'를, 16자 이상이면 15자 까지만 저장하고 끝에 . 가 있으면 제거
+    new_id = 'a' if not new_id else new_id[:15]
+    new_id = new_id.rstrip('.')
+
+    # 7단계: 길이가 2자 이하면, 3자가 될 때까지 마지막 문자를 추가
+    if len(new_id) < 3:
+        new_id += new_id[-1] * (3 - len(new_id))
+    return new_id
 ```
