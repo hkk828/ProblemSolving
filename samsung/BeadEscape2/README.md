@@ -141,3 +141,14 @@ for i in range(1, 8):
     board = [list(row) for row in rows]
     check(i, num2escape(board), answer)
 ```
+
+테스트 케이스에는 첫 줄에 정답, 둘째줄에 board의 사이즈, 그리고 그 다음줄부터는 board의 상태가 저장되어 있습니다.
+```
+1
+5 5
+#####
+#..B#
+#.#.#
+#RO.#
+#####
+```
