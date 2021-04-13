@@ -1,5 +1,6 @@
 ## 뱀
-[문제 링크] https://www.acmicpc.net/problem/3190
+[문제 링크] https://www.acmicpc.net/problem/3190  
+
 위의 링크에 설명된 방식으로 뱀이 움직일 때, 게임이 끝날 때 까지의 시간을 구하는 문제입니다.
 
 ### 풀이
