@@ -12,17 +12,10 @@ inputs = [{
         'result': ["WX", "XY"]
     }]
 
-import menu_renewal
-import menu_renewal_counter
+from menu_renewal import renew_menu
 
 for input in inputs:
-    if menu_renewal.renew_menu(input['orders'], input['course']) == input['result']:
-        print("Passed a test case!")
-    else:
-        print("Failed a test case!")
-
-for input in inputs:
-    if menu_renewal_counter.renew_menu(input['orders'], input['course']) == input['result']:
+    if renew_menu(input['orders'], input['course']) == input['result']:
         print("Passed a test case!")
     else:
         print("Failed a test case!")

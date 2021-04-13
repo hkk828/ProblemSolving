@@ -1,3 +1,12 @@
+## 메뉴 리뉴얼
+[문제 링크] https://programmers.co.kr/learn/courses/30/lessons/72411
+
+### 풀이
+문자열이 주어졌을 때, 일정한 크기의 모든 조합을 만들어 낼 수 있는가가 이 문제의 핵심입니다. ```python```에서는 기본 라이브러리인 ```itertools```에서 ```combinations```이란 함수를 이용하여 모든 조합을 만들어 낼 수 있습니다.  
+예를 들어, ```combinations('abc', 2)```는 ```('a', 'b'), ('a', 'c'), ('b', 'c')```를 ```iterable```로 반환합니다.
+
+이렇게 원하는 모든 조합을 만들어 낼 수 있다면, 문제를 다음과 같이 해결할 수 있습니다.
+```python
 from itertools import combinations
 
 def renew_menu(orders, course):
@@ -39,5 +48,30 @@ def renew_menu(orders, course):
     # 리뉴얼된 메뉴를 알파벳순으로 정렬한 후 반환해줍니다
     renewed_menu.sort()
     return renewed_menu
+```
 
+```collections```라는 라이브러리의 ```Counter``` 클래스를 이용하면 코드를 더 짧게 작성할 수도 있습니다.
 
+```python
+from itertools import combinations
+from collections import Counter # 중복되는 원소를 세야할 때 유용한 클래스
+
+def renew_menu(orders, course):
+    renewed_menu =[]
+
+    for num in course:
+        num_combinations = [] # 각 코스 사이즈의 메뉴 조합을 저장하는 변수
+        for order in orders:
+            if len(order) >= num:
+                num_combinations += combinations(sorted(order), num)
+        # num_ranks는 득표 내림차순으로 (메뉴 조합, 득표수)를 갖는다
+        num_ranks = Counter(num_combinations).most_common()
+        for num_menu, vote in num_ranks:
+            # 최고 득표이면서 1보다 큰 경우면 renewed_menu에 추가해준다
+            if vote == num_ranks[0][1] and vote > 1:
+                renewed_menu.append(''.join(num_menu))
+            else:
+                break
+    # 리뉴얼된 메뉴 알파벳 순으로 정렬된 리스트 반환
+    return sorted(renewed_menu)
+```
