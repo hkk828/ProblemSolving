@@ -12,3 +12,5 @@
 **Kakao**
 - [아이디 추천](/kakao/IdRecommendation/)
 - [메뉴 리뉴얼](/kakao/MenuRenewal/)
+- [순위 검색](/kakao/RankSearch/)
+- [택시 합승 요금](/kakao/TaxiFare/)
